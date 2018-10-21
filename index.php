@@ -1,3 +1,11 @@
+<?php
+	//verifico si hay un mensaje por GET y valido que sea el error de logeo
+	$error = "";
+	if (isset($_GET['mensaje']) && ($_GET['mensaje'] == 'error_de_logeo')){
+		//defino el mensaje que se mostrará
+		$error = "Su usuario o su contraseña son incorrectos";
+	}
+?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 	<head>
@@ -22,6 +30,8 @@
 			<input type="submit" name="" value="Entrar" class="b_inicio">
 			</form>
 
+			
+			<p><?php echo $error ?></p>
 		</div>
 
 
