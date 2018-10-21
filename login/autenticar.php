@@ -16,7 +16,17 @@ $password = strip_tags($password);
 
 //validación de datos ingresados
 if($usuario == 'prueba' && $password == '123'){
-  echo "bienvenido";
+
+  //variables de sessión
+  //una vez se compruebe que los valores de logeo son correctos
+  session_start();
+  $_SESSION['nombre'] = 'prueba';
+
+  //creación de niveles de acceso a la plataforma
+  $_SESSION['nivel'] = '1';
+
+  define('PAGINA_INCIO','../main/index.php');
+  header('Location: '.PAGINA_INCIO);
 }else{
 
   //mensaje por GET en la URL

@@ -5,6 +5,7 @@
 		//defino el mensaje que se mostrará
 		$error = "Su usuario o su contraseña son incorrectos";
 	}
+
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -24,13 +25,13 @@
 			<input type="text" name="p_username" value="" id="p_username">
 
 			<label for="pass" class="pass">contraseña</label>
-			<input type="text" name="p_password" value="" id="p_password">
+			<input type="password" name="p_password" value="" id="p_password">
 
 			<br class="clearfloat">
 			<input type="submit" name="" value="Entrar" class="b_inicio">
 			</form>
 
-			
+
 			<p><?php echo $error ?></p>
 		</div>
 
