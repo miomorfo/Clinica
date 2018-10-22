@@ -6,6 +6,14 @@
 		$error = "Su usuario o su contraseña son incorrectos";
 	}
 
+//en caso de no tener persmisos
+	if (isset($_GET['mensaje']) && ($_GET['mensaje'] == 'sin_permiso')){
+		//defino el mensaje que se mostrará
+		$error = "debe ingresar su usuario y contraseña";
+	}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">

@@ -1,7 +1,7 @@
 <?php
 
 $usuario = $_POST['p_username'];
-//filtrado de letras y textos
+//filtrado de letras, textos o caracteres raros
 $usuario = addslashes($usuario);
 $usuario = strip_tags($usuario);
 
