@@ -1,18 +1,25 @@
 <?php
 
+include ('funciones/menu.php');
+
 session_start();
 
 //impedir el acceso a personas que no se han logeado
 if($_SESSION['nivel']=='1' || $_SESSION['nivel']=='2'){
 
 
-  echo  "<h1>bienvenido a la intranet, ".$_SESSION['nombre']." </h1>"
 
-  if($_SESSION['nivel']== '1'){
-    echo "<p>permisos de acceso nivel 1</p>";
-  }else{
-    echo "<p>permisos de acceso nivel 2</p>";
-  }
+
+//asignar menu según el nivel de acceso
+
+//de momento probaré solo dos menús
+if($_SESSION['nivel']=='1'){
+
+    $menu = getMenuAdministrador();
+
+}else{
+    $menu = getMenuMedico();
+}
 
 
 ?>
@@ -28,6 +35,15 @@ if($_SESSION['nivel']=='1' || $_SESSION['nivel']=='2'){
     <title>Intranet Clinica</title>
   </head>
   <body>
+  <header>
+
+  </header>
+
+
+  <?= $menu
+
+   ?>
+
     <a href="../login/salir.php">cerrar sesión</a>
   </body>
 </html>

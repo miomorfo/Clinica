@@ -16,7 +16,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
+<html lang="es">
 	<head>
 		<link rel="stylesheet" href="/css/master.css">
 		<script src="validarDatos.js" charset="utf-8"></script>
