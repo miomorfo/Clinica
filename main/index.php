@@ -44,13 +44,13 @@ if($_SESSION['nivel']=='1'){
 
    ?>
 
-    <a href="../login/salir.php">cerrar sesión</a>
+    <a href="..login/salir.php">cerrar sesión</a>
   </body>
 </html>
 
 <?php
 }else{
-  define('PAGINA_INCIO','../index.php?mensaje=sin_permiso');
+  define('PAGINA_INCIO','..index.php?mensaje=sin_permiso');
   header('Location: '.PAGINA_INCIO);
 }
 
