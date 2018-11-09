@@ -14,6 +14,8 @@ $password = strip_tags($password);
 
 //conexión a la base de datos
 
+$ip = $_SERVER['REMOTE_ADDR']; //obtener la IP de quien se conecta
+
 //validación de datos ingresados
 if($usuario == 'prueba' && $password == '123'){
 
