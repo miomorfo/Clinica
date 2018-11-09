@@ -16,9 +16,11 @@ if($_SESSION['nivel']=='1' || $_SESSION['nivel']=='2'){
 if($_SESSION['nivel']=='1'){
 
     $menu = getMenuAdministrador();
+    $perfil = 'Administrador';
 
 }else{
     $menu = getMenuMedico();
+    $perfil = 'Médico';
 }
 
 
@@ -40,24 +42,19 @@ if($_SESSION['nivel']=='1'){
   <body>
 
   <header>
-
+    <h1>Clinica Psiquiatrica la Lobotomía</h1>
+    <h2>bienvenido, <?= $_SESSION['nombre']  ?></h2>
+    <div class="cerrar_session">
+      <a href="../login/salir.php">cerrar sesión</a>
+    </div>
   </header>
-  <nav class = "menu">
-    <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active"><a href="index.php">Médicos</a></li>
-      <li class="nav-item active"><a href="index.php">Aistentes</a></li>
-      <li class="nav-item active"><a href="index.php">Challa</a></li>
-      <li class="nav-item active"><a href="index.php"></a></li>
-    </ul>
-  </div>
-  </nav>
+
 
   <?= $menu
 
    ?>
 
-    <a href="../login/salir.php">cerrar sesión</a>
+   <footer><?= $_SESSION['nombre']  ?> has entrado con el perfil de <?= $perfil ?></footer>
   </body>
 </html>
 
