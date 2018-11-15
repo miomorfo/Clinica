@@ -43,26 +43,17 @@ if($_SESSION['nivel']=='1'){
 
   </header>
 
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <nav class = "menu">
-    <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link" href="index.php">Médicos</a></li>
-      <li class="nav-item"><a class="nav-link" href="index.php">Aistentes</a></li>
-      <li class="nav-item"><a class="nav-link" href="index.php">Challa</a></li>
-      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
-    </ul>
-  </div>
-  </nav>
-</nav> -->
+
 
   <?= $menu
 
 
    ?>
 
+<br/> <br/>
     <a href="..login/salir.php">Cerrar Sesión</a>
   </body>
+
 </html>
 
 <?php

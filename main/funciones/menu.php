@@ -6,12 +6,21 @@
 function getMenuAdministrador(){
   $resultado = '
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #e3f2fd;>
   <nav class = "menu">
   <div class="collapse navbar-collapse">
    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
       <li class="nav-item"><a class="nav-link" href="index.php">Médicos</a></li>
-      <li class="nav-item"><a class="nav-link" href="index.php">Aistentes</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php">Asistentes</a></li>
       <li class="nav-item"><a class="nav-link" href="index.php">Challa</a></li>
       <li class="nav-item"><a class="nav-link" href="index.php"></a></li>
     </ul>
@@ -29,15 +38,19 @@ function getMenuAdministrador(){
 
 function getMenuMedico(){
   $resultado = '
-
+<nav class="navbar navbar-light navbar-expand-lg">
   <nav class = "menu">
-    <ul>
-      <li><a href="index.php">General</a></li>
-      <li><a href="index.php">Pacientes</a></li>
-      <li><a href="index.php">Estadisticas</a></li>
-      <li><a href="index.php">Control de personal</a></li>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="index.php">General</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php">Pacientes</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php">Estadisticas</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php">Estadisticas</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php">Control de personal</a></li>
     </ul>
+  </div>
   </nav>
+</nav>
 
   ';
   return $resultado;
@@ -47,14 +60,16 @@ function getMenuMedico(){
 function getMenuAsistente(){
 
   $resultado = '
-
+  <nav class="navbar navbar-light navbar-expand-lg">
   <nav class = "menu">
-    <ul>
-      <li><a href="index.php">Horas</a></li>
-      <li><a href="index.php">Fichas</a></li>
-      <li><a href="index.php">Pacintes</a></li>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="index.php">Horas</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php">Fichas</a></li>
+      <li class="nav-item"><a class="nav-link" href="index.php">Pacintes</a></li>
 
     </ul>
+  </div>
   </nav>
 
   ';

@@ -13,5 +13,8 @@
 
 .menu
 {
-  background-color: #e3f2fd;  
+  position: relative;
+  background-color: #e3f2fd;
+  left: 50%;
+  right: 50%;
 }
