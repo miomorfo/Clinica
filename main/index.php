@@ -1,6 +1,6 @@
 <?php
 //incluir solo en está página y así evitamos duplicados
-include_once ('funciones/menu.php');
+include ('funciones/menu.php');
 
 session_start();
 

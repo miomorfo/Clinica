@@ -28,10 +28,11 @@ function getMenuMedico(){
 
   <nav class = "menu">
     <ul>
-      <li><a href="index.php">General</a></li>
-      <li><a href="index.php">Pacientes</a></li>
-      <li><a href="index.php">Estadisticas</a></li>
-      <li><a href="index.php">Control de personal</a></li>
+      <li><a href="agenda.php">Agenda</a></li>
+      <li><a href="pacientes.php">Pacientes</a></li>
+      <li><a href="estadisticas.php">Estadisticas</a></li>
+      <li><a href="asistentes.php">Asistentes</a></li>
+      <li><a href="cuentas.php">Cuentas</a></li>
     </ul>
   </nav>
 

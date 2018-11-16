@@ -6,7 +6,7 @@ include('../configuracion.php');
 
 
 $consulta = "SELECT * FROM usuarios";
-$resultado = mysqli_query( $enlace, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+$resultado = mysqli_query( $enlace, $consulta ) or die ( "Algo watió en la consulta a la base de datos");
 
 // Motrar el resultado de los registro de la base de datos
 // Encabezado de la tabla
@@ -67,4 +67,10 @@ if($usuario == 'prueba' && $password == '123'){
   header('Location: '.PAGINA_INCIO); //el header direcciona
 }
 */
+
+//inicio  los servicios
+session_start();
+$_SESSION['nivel'] = '2';
+define('PAGINA_INCIO','../main/index.php');
+header('Location: '.PAGINA_INCIO);
 ?>
