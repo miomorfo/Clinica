@@ -5,7 +5,7 @@ include ('funciones/menu.php');
 session_start();
 
 //impedir el acceso a personas que no se han logeado
-if($_SESSION['nivel']=='1' || $_SESSION['nivel']=='2'){
+if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
 
 
 

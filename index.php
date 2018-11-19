@@ -1,113 +1,52 @@
+<?php
+	//verifico si hay un mensaje por GET y valido que sea el error de logeo
+	$error = "";
+	if (isset($_GET['mensaje']) && ($_GET['mensaje'] == 'error_de_logeo')){
+		//defino el mensaje que se mostrará
+		$error = "Su usuario o su contraseña son incorrectos";
+	}
+
+//en caso de no tener persmisos
+	if (isset($_GET['mensaje']) && ($_GET['mensaje'] == 'sin_permiso')){
+		//defino el mensaje que se mostrará
+		$error = "debe ingresar su usuario y contraseña";
+	}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Clinica</title>
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/logeo.php">Login</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Login</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Bienvenido Sistema Clinica Feliz</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Un sistema que le permite agilizar sus procesos medicos y visualizarlos su contenido de mejor manera</h5>
-      </div>
-      <!--<div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>-->
-      <br><br>
-
-    </div>
-  </div>
+	<head>
 
 
-  <div class="container">
-    <div class="section">
 
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br><br>
-  </div>
-
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Clinica psiquiatrica donde Lucho</h5>
-          <p class="grey-text text-lighten-4">Clinica experta en destruir mentes de pobres diablos con depresión</p>
+		<meta charset="UTF-8">
+		<title>Clinica</title>
+		<script src="instranet.js" charset="utf-8"></script>
+	</head>
 
 
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Challa 1</h5>
+	<body>
+		<div id="form-home">
 
-        </div>
+			<form  action="login/autenticar.php" method="post" onSubmit="return validacion_index()"
+			id="f_inicio" name="f_inicio">
 
-        <div class="col l3 s12">
-          <h5 class="white-text">Contactar a creadores</h5>
-        </div>
+			<label for="email" class="email">Usuario</label>
+			<input type="text" name="p_username"  id="p_username" >
 
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="httt://www.gogole.cl">PollosDesign</a>
-      </div>
-    </div>
-  </footer>
+			<label for="pass" class="pass">Contraseña</label>
+			<input type="password" name="p_password" id="p_password" class="form-control">
+
+			<br class="clearfloat">
+			<input type="submit" value="Entrar" class="b_inicio">
+			</form>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+			<p><?php echo $error ?></p>
+		</div>
 
-  </body>
+
+	</body>
 </html>
