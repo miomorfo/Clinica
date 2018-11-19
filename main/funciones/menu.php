@@ -7,7 +7,7 @@ function getMenuMedico(){
 					<ul>
 						<li><a href="index.php" title="Inicio">Inicio</a></li>
 						<li><a href="usuarios.php" title="Usuarios">Usuarios</a></li>
-						<li><a href="clientes.php" title="Clientes">Clientes</a></li>
+						<li><a href="pacientes.php" title="Clientes">Pacientes</a></li>
 					</ul>
 				</nav>
 	';
@@ -20,7 +20,7 @@ function getMenuAsistente(){
 				<nav class="menu">
 					<ul>
 						<li><a href="index.php" title="Inicio">Inicio</a></li>
-						<li><a href="clientes.php" title="Clientes">Clientes</a></li>
+						<li><a href="pacientes.php" title="Pacientes">Clientes</a></li>
 					</ul>
 				</nav>
 	';
