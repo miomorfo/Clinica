@@ -82,7 +82,7 @@ Teléfono: <strong><a href="tel:<?= $_SESSION['telefono'] ?>"><?= $_SESSION['tel
 </body>
 </html>
 
-<?
+<?php
 } else {
 
 	define('PAGINA_INICIO','../index.php?mensaje=sin_permiso');
