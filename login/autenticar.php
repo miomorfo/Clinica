@@ -14,19 +14,19 @@ $contrasena = strip_tags($contrasena);
 
 //CONEXIÓN CON LA BASE DE DATOS
 
-$usuarios = mysql_query("SELECT * FROM usuarios WHERE user='$usuario' and pass='$contrasena' ");
+$usuarios = mysql_query("SELECT * FROM clientes WHERE user='$usuario' and pass='$contrasena' ");
 
 
 //Comprobamos que el usuario y la contraseña son correctas
 
 if($fila = mysql_fetch_array($usuarios)){
-	
+
 	//Una vez comprobamos que el login es correcto, asignamos las variables de sesión
 	session_start();
 	$_SESSION['nombre']=$fila['nombre'];
 	$_SESSION['nivel']=$fila['nivel'];
 	$_SESSION['telefono']=$fila['telefono'];
-	
+
 	define('PAGINA_INICIO','../main/index.php');
 	header('Location: '.PAGINA_INICIO);
 }else{
@@ -37,14 +37,3 @@ if($fila = mysql_fetch_array($usuarios)){
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
