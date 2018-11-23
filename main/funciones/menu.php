@@ -5,11 +5,15 @@ function getMenuMedico(){
 	$resultado='
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<nav class="menu">
+
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link" href="index.php" title="Inicio">Inicio</a></li>
 						<li class="nav-item"><a class="nav-link" href="usuarios.php" title="Usuarios">Usuarios</a></li>
-						<li class="nav-item"><a class="nav-link" href="clientes.php" title="Clientes">Clientes</a></li>
+						<li class="nav-item"><a class="nav-link" href="pacientes.php" title="Pacientes">Clientes</a></li>
+
+					
+
 					</ul>
 				</div>
 				</nav>
@@ -25,7 +29,7 @@ function getMenuAsistente(){
 				<nav class="menu">
 					<ul>
 						<li><a href="index.php" title="Inicio">Inicio</a></li>
-						<li><a href="clientes.php" title="Clientes">Clientes</a></li>
+						<li><a href="pacientes.php" title="Pacientes">Clientes</a></li>
 					</ul>
 				</nav>
 	</nav>
