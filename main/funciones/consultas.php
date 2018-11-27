@@ -4,27 +4,28 @@
 include('configuracion.php');
 
 
-	
+
 //Consultar USARIOS
 function getUsuarios(){
 	$usuarios = mysql_query("SELECT * FROM usuarios");
-	
-	$resultado ='<table>
+
+	$resultado ='<table class="table">
+			<thead>
 				  <tr>
-				  	<th><strong>ID</strong></th>
-					<th><strong>NOMBRE</strong></th>
-					<th><strong>APELLIDOS</strong></th>
-					<th><strong>USER</strong></th>
-					<th><strong>PASS</strong></th>
-					<th><strong>EMAIL</strong></th>
-					<th><strong>TELÉFONO</strong></th>
-					<th><strong>NIVEL</strong></th>
-					<th></th>
-					<th></th>
-				  </tr>';
-	
+				  	<th class="bg-info" scope="col"><strong>ID</strong></th>
+					<th class="bg-info"><strong>NOMBRE</strong></th>
+					<th class="bg-info"><strong>APELLIDOS</strong></th>
+					<th class="bg-info"><strong>USER</strong></th>
+					<th class="bg-info"><strong>PASS</strong></th>
+					<th class="bg-info"><strong>EMAIL</strong></th>
+					<th class="bg-info"><strong>TELÉFONO</strong></th>
+					<th class="bg-info"><strong>NIVEL</strong></th>
+					<th class="bg-info"></th>
+					<th class="bg-info"></th>
+				  </tr> </thead>';
+
 	while($fila = mysql_fetch_array($usuarios)){
-		
+
 	$resultado .='<tr>
 					<td>'.$fila['id'].'</td>
 					<td>'.$fila['nombre'].'</td>
@@ -34,11 +35,11 @@ function getUsuarios(){
 					<td><a href="mailto:'.$fila['email'].'">'.$fila['email'].'</a></td>
 					<td><a href="tel:'.$fila['telefono'].'">'.$fila['telefono'].'</a></td>
 					<td>'.$fila['nivel'].'</td>
-					<td><a href="editar_usuarios.php?id='.$fila['id'].'" class="enlace_rojo">Editar</a></td>
-					<td><a href="borrar_usuarios.php" class="enlace_rojo">Borrar</a></td>
-				  </tr>';	
+					<td><button class="btn btn-light my-2 my-sm-0" type="button"><a href="editar_usuarios.php?id='.$fila['id'].'" class="enlace_rojo">Editar</a></button></td>
+					<td><button class="btn btn-light my-2 my-sm-0" type="button"><a href="borrar_usuarios.php" class="enlace_rojo">Borrar</a></button></td>
+				  </tr>';
 	}
-	
+
 	$resultado .='</table>';
 	return $resultado;
 }
@@ -47,14 +48,3 @@ function getUsuarios(){
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-

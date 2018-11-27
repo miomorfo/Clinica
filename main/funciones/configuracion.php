@@ -7,7 +7,7 @@
 	//contectamos y seleccionamos la base de datos
 	mysql_connect($dbhost,$dbuser,$dbpass);
 	mysql_select_db($db);
-	
+
 	//comenzamos la sesión
 	session_start();
 ?>
