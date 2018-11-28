@@ -3,18 +3,12 @@
 include('funciones/menu.php');
 include('funciones/consultas.php');
 
-//impedimos el acceso a las personas que NO se han logado
-
 if($_SESSION['nivel']==1){
 
-
-//asignamos el menú en función de si es NIVEL 1 o NIVEL 2
-
-	$menu = getMenuMedico();
+  $menu = getMenuMedico();
 	$perfil = 'MEDICO';
 	$usuarios = getUsuarios();
   $pacientes = getPacientes();
-
 
 ?>
 
@@ -35,43 +29,59 @@ if($_SESSION['nivel']==1){
 <div class="cerrar_sesion">
 <a href="../login/salir.php">Cerrar sesión</a>
 </div><!--end .cerrar_sesion -->
+<!-- google chart-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.2,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+<!-- google chart end -->
 </header>
 <?= $menu ?>
 <div class="clearfix"></div>
-<h2 class="principal">Pacientes Actuales</h2>
-	<?= $pacientes ?>
 
-<h2 class="principal">Ingresar paciente</h2>
-<div class="formulario">
-	<form action="funciones/crear_usuarios.php" method="post" id="form_home">
 
-    	<label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" />
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h3>Column 1</h3>
+        <p>Lorem ipsum dolor..</p>
+        <div id="donutchart" style="width: 400px; height: 300px;"></div>
+        <p>Ut enim ad..</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Column 2</h3>
+        <p>Lorem ipsum dolor..</p>
+        <p>Ut enim ad..</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Column 3</h3>
+        <p>Lorem ipsum dolor..</p>
+        <p>Ut enim ad..</p>
+      </div>
+    </div>
+  </div>
 
-        <label for="apellidos">Apellidos</label>
-        <input id="apellidos" name="apellidos" />
 
-        <label for="user">Usuario</label>
-        <input id="user" name="user" />
 
-        <label for="pass">Contraseña</label>
-        <input id="pass" name="pass" />
-
-        <label for="email">Email</label>
-        <input id="email" name="email" />
-
-        <label for="telefono">Teléfono</label>
-        <input id="telefono" name="telefono" />
-
-        <label for="nivel">Nivel</label>
-        <input id="nivel" name="nivel" />
-
-        <input type="submit" value="Dar de Alta" class="b_inicio"/>
-
-    </form>
-</div>
-
-</div><!--end .container-->
 
 
 <footer>
@@ -90,11 +100,16 @@ Teléfono: <strong><a href="tel:<?= $_SESSION['telefono'] ?>"><?= $_SESSION['tel
 </body>
 </html>
 
-<?
+
+
+<?php
+
 } else {
 
-	define('PAGINA_INICIO','../index.php?mensaje=sin_permiso');
+  define('PAGINA_INICIO','../index.php?mensaje=sin_permiso');
 	header('Location: '.PAGINA_INICIO);
 
 }
+
+
 ?>

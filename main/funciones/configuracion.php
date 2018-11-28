@@ -1,6 +1,6 @@
 <?php
 	$dbhost = 'localhost'; //hosting del servidor, nos lo da la empresa que contratemos
-	$db = 'clinica'; //nombre de la base de datos
+	$db = 'consultadb'; //nombre de la base de datos
 	$dbuser = 'root'; //usuario para la base de datos
 	$dbpass = ''; //contraseña para la base de datos
 

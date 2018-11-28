@@ -10,9 +10,10 @@ function getMenuMedico(){
 					<ul class="navbar-nav mr-auto" id="mn">
 						<li class="nav-item"><a class="nav-link" href="index.php" title="Inicio">Inicio</a></li>
 						<li class="nav-item"><a class="nav-link" href="usuarios.php" title="Usuarios">Usuarios</a></li>
-						<li class="nav-item"><a class="nav-link" href="pacientes.php" title="Pacientes">Clientes</a></li>
+						<li class="nav-item"><a class="nav-link" href="pacientes.php" title="Pacientes">Pacientes</a></li>
+						<li class="nav-item"><a class="nav-link" href="estadisticas.php" title="estadisticas">Estadisticas</a></li>
 
-					
+
 
 					</ul>
 				</div>
@@ -30,7 +31,7 @@ function getMenuAsistente(){
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
 						<li><a href="index.php" title="Inicio">Inicio</a></li>
-						<li><a href="pacientes.php" title="Pacientes">Clientes</a></li>
+						<li><a href="pacientes.php" title="Pacientes">Pacientes</a></li>
 					</ul>
 				</div>
 				</nav>
