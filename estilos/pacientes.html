@@ -1,3 +1,23 @@
+<?php
+
+include('funciones/menu.php');
+include('funciones/consultas.php');
+
+//impedimos el acceso a las personas que NO se han logado
+
+if($_SESSION['nivel']==1){
+
+
+//asignamos el menú en función de si es NIVEL 1 o NIVEL 2
+
+	$menu = getMenuMedico();
+	$perfil = 'MEDICO';
+	$usuarios = getUsuarios();
+  $pacientes = getPacientes();
+
+
+?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -158,10 +178,10 @@ desired effect
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="index.html"><i class="fa fa-link"></i> <span>Inicio</span></a></li>
-        <li><a href="hora.html"><i class="fa fa-link"></i> <span>Toma de hora</span></a></li>
-        <li><a href="pacients.html"><i class="fa fa-link"></i> <span>Pacientes</span></a></li>
+        <li><a href="usuarios.php"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
+        <li><a href="pacients.php"><i class="fa fa-link"></i> <span>Pacientes</span></a></li>
 
-        <li><a href="estadisticas.html"><i class="fa fa-link"></i> <span>Estadisticas</span></a></li>
+        <li><a href="estadisticas.php"><i class="fa fa-link"></i> <span>Estadisticas</span></a></li>
 
         <!--<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -185,8 +205,8 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+        Pacientes
+        <small>Ingresados</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -205,8 +225,8 @@ desired effect
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellidos</th>
       <th scope="col">Handle</th>
     </tr>
   </thead>

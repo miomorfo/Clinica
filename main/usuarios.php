@@ -13,80 +13,280 @@ if($_SESSION['nivel']==1){
 	$menu = getMenuMedico();
 	$perfil = 'MEDICO';
 	$usuarios = getUsuarios();
-
+}
 
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Inicio Intranet</title>
-<link href="styles.css" rel="stylesheet" type="text/css"/>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Clinica Psiquiatrica | Servicio web</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-<body>
-<div class="container">
-<header>
-<h1>Intranet Clinica Psiquiatrica</h1>
-<h2>Bienvenido a la Intranet, <?= $_SESSION['nombre'] ?></h2>
-<div class="cerrar_sesion">
-<a href="../login/salir.php">Cerrar sesión</a>
-</div><!--end .cerrar_sesion -->
-</header>
-<?= $menu ?>
-<div class="clearfix"></div>
-<h2 class="principal">Usuarios Actuales</h2>
-	<?= $usuarios ?>
+  <!-- Main Header -->
+  <header class="main-header">
 
-<h2 class="principal">Alta Usuarios</h2>
-<div class="formulario">
-	<form action="funciones/crear_usuarios.php" method="post" id="form_home">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>C</b>linica</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Clinica Psiquiatrica</b>Clinica</span>
+    </a>
 
-    	<label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" />
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
 
-        <label for="apellidos">Apellidos</label>
-        <input id="apellidos" name="apellidos" />
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">Fernando Escobar</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <!--<li class="user-header">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-        <label for="user">Usuario</label>
-        <input id="user" name="user" />
+                <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2012</small>
+                </p>
+              </li>-->
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#"></a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#"></a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#"></a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Cerrar Session</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <!--<li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>-->
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
 
-        <label for="pass">Contraseña</label>
-        <input id="pass" name="pass" />
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
 
-        <label for="email">Email</label>
-        <input id="email" name="email" />
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Fernando Escobar</p>
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
 
-        <label for="telefono">Teléfono</label>
-        <input id="telefono" name="telefono" />
+      <!-- search form (Optional) -->
 
-        <label for="nivel">Nivel</label>
-        <input id="nivel" name="nivel" />
+      <!-- /.search form -->
 
-        <input type="submit" value="Dar de Alta" class="b_inicio"/>
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MENU</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="index.php"><i class="fa fa-link"></i> <span>Inicio</span></a></li>
+        <li><a href="usuarios.php"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
+        <li><a href="pacientes.php"><i class="fa fa-link"></i> <span>Pacientes</span></a></li>
 
-    </form>
+        <li><a href="estadisticas.php"><i class="fa fa-link"></i> <span>Estadisticas</span></a></li>
+
+        <!--<li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Link in level 2</a></li>
+          </ul>
+        </li>-->
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Clinica Psiquiatrica
+        <small>rellenar con descripciones</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <div class="clearfix"></div>
+      <h2 class="principal">Usuarios Actuales</h2>
+      	<?= $usuarios ?>
+
+      <h2 class="principal">Alta Usuarios</h2>
+      <div class="formulario">
+      	<form action="funciones/crear_usuarios.php" method="post" id="form_home">
+
+          	<label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" />
+
+              <label for="apellidos">Apellidos</label>
+              <input id="apellidos" name="apellidos" />
+
+              <label for="user">Usuario</label>
+              <input id="user" name="user" />
+
+              <label for="pass">Contraseña</label>
+              <input id="pass" name="pass" />
+
+              <label for="email">Email</label>
+              <input id="email" name="email" />
+
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" />
+
+              <label for="nivel">Nivel</label>
+              <input id="nivel" name="nivel" />
+
+              <input type="submit" value="Dar de Alta" class="b_inicio"/>
+
+          </form>
+      </div>
+
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      proyecto de titulo INACAP
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; Nosotros 2018 <a href="#">Nosotros</a>.</strong> Todos los derechos reservados
+  </footer>
+
+
+  <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
+<!-- ./wrapper -->
 
-</div><!--end .container-->
-<footer>
-<div class="left">
-Teléfono: <strong><a href="tel:<?= $_SESSION['telefono'] ?>"><?= $_SESSION['telefono'] ?></a></strong>
-</div><!--end .left-->
+<!-- REQUIRED JS SCRIPTS -->
 
-<div class="right">
-<?= $_SESSION['nombre'] ?>, has entrado con el perfil de <strong><?= $perfil ?></strong>
-</div><!--end .right-->
-</footer>
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
 </html>
-
-<?php
-} else {
-
-	define('PAGINA_INICIO','../index.php?mensaje=sin_permiso');
-	header('Location: '.PAGINA_INICIO);
-
-}
-?>

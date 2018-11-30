@@ -9,19 +9,20 @@ include('configuracion.php');
 function getUsuarios(){
 	$usuarios = mysql_query("SELECT * FROM clientes");
 
-	$resultado ='<table>
+	$resultado ='<table class="table table-striped">
+					<thead>
 				  <tr>
-				  	<th><strong>ID</strong></th>
-					<th><strong>NOMBRE</strong></th>
-					<th><strong>APELLIDOS</strong></th>
-					<th><strong>USER</strong></th>
-					<th><strong>PASS</strong></th>
-					<th><strong>EMAIL</strong></th>
-					<th><strong>TELÉFONO</strong></th>
-					<th><strong>NIVEL</strong></th>
+				  	<th scope="col">ID</th>
+					<th scope="col">NOMBRE</th>
+					<th scope="col">APELLIDOS</th>
+					<th scope="col">USER</th>
+					<th scope="col">PASS</th>
+					<th scope="col">EMAIL</th>
+					<th scope="col">TELÉFONO</th>
+					<th scope="col">>NIVEL</th>
 					<th></th>
 					<th></th>
-				  </tr>';
+				  </tr> </thead>';
 
 	while($fila = mysql_fetch_array($usuarios)){
 
@@ -48,23 +49,23 @@ function getUsuarios(){
 
 function getPacientes(){
 
-	$pacientes = mysql_query("SELECT * FROM datos_paciente");
+	$pacientes = mysql_query("SELECT * FROM pacientes");
 
-	$resultado ='<table>
+	$resultado ='<table class="table table-striped">
 				  <tr>
-				  <th><strong>ID</strong></th>
-					<th><strong>RUT</strong></th>
-					<th><strong>NOMBRES</strong></th>
-					<th><strong>APELLIDOS</strong></th>
-					<th><strong>SEXO</strong></th>
-					<th><strong>ANT. FAMILIARES</strong></th>
-					<th><strong>ANT. PERSONALES</strong></th>
-					<th><strong>TELEFONO</strong></th>
-					<th><strong>PREVISIÓN</strong></th>
-					<th><strong>DIRECCIÓN</strong></th>
-					<th><strong>CORREO</strong></th>
-					<th><strong>FECHA NACIMIENTO</strong></th>
-					<th><strong>TIPO ENFERMEDAD</strong></th>
+				  <th scope="col">ID</th>
+					<th scope="col">RUT</th>
+					<th scope="col">NOMBRES</th>
+					<th scope="col">APELLIDOS</th>
+					<th scope="col">SEXO</th>
+					<th scope="col">ANT. FAMILIARES</th>
+					<th scope="col"ANT. PERSONALES</th>
+					<th scope="col"TELEFONO</th>
+					<th scope="col"PREVISIÓN</th>
+					<th scope="col"DIRECCIÓN</th>
+					<th scope="col">CORREO</th>
+					<th scope="col">FECHA NACIMIENTO</th>
+					<th scope="col">TIPO ENFERMEDAD</th>
 					<th></th>
 					<th></th>
 				  </tr>';
@@ -75,7 +76,7 @@ function getPacientes(){
 
 									<td>'.$fila['id_paciente'].'</td>
 									<td>'.$fila['rut'].'</td>
-									<td>'.$fila['nombres'].'</td>
+									<td>'.$fila['nombre'].'</td>
 									<td>'.$fila['apellidos'].'</td>
 									<td>'.$fila['sexo'].'</td>
 									<td>'.$fila['antecedentes_familiares'].'</td>
@@ -85,7 +86,6 @@ function getPacientes(){
 									<td>'.$fila['direccion'].'</td>
 									<td><a href="mailto:'.$fila['correo'].'">'.$fila['correo'].'</a></td>
 									<td>'.$fila['fecha_nacimiento'].'</td>
-									<td>'.$fila['tipo_enfermedad'].'</td>
 
 									<td><a href="editar_paciente.php?id='.$fila['id_paciente'].'" class="enlace_rojo">Editar</a></td>
 									<td><a href="borrar_paciente.php" class="enlace_rojo">Borrar</a></td>
