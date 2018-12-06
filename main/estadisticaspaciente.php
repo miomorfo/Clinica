@@ -1,31 +1,28 @@
 <?php
 
 include('funciones/menu.php');
+include('funciones/consultas.php');
 include('funciones/footer.php');
 
-session_start();
 
 
-//impedimos el acceso a las personas que NO se han logado
 
-if($_SESSION['nivel']==1 || $_SESSION['nivel']==2)
-{
+if($_SESSION['nivel']==1){
 
-
-//asignamos el menú en función de si es NIVEL 1 o NIVEL 2
-if($_SESSION['nivel']=='1'){
-	$menu = getMenuMedico();
+  $menu = getMenuMedico();
 	$perfil = 'MEDICO';
-}else{
-	$menu = getMenuAsistente();
-	$perfil = 'ASISTENTE';
-}
+	$usuarios = getUsuarios();
+  $pacientes = getPacientes();
 }
 
 $footer = getFooter();
 
 ?>
+
+
+
 <!DOCTYPE html>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -33,21 +30,17 @@ $footer = getFooter();
   <title>tuCLinic | Servicio web</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <!-- fullCalendar -->
-  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.min.css">
-  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
-
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,11 +52,61 @@ $footer = getFooter();
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  
+
+  <!-- google chart -->  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Año', 'sucesos ocurridos'],
+          ['2014',  8],
+          ['2015',  11],
+          ['2016',  8],
+          ['2017',  7]
+        ]);
+
+        var options = {
+          title: 'suceos por paciente',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
+  <!-- Main Header -->
   <header class="main-header">
+
     <!-- Logo -->
     <a href="index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -91,8 +134,8 @@ $footer = getFooter();
               <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">
-                <?= $_SESSION['nombre'] ?>
-              </span>
+								<?= $_SESSION['nombre'] ?>
+							</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -139,12 +182,9 @@ $footer = getFooter();
       </div>
     </nav>
   </header>
-
-
-
-
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
+
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
@@ -155,12 +195,12 @@ $footer = getFooter();
         </div>
         <div class="pull-left info">
 
-          <p><?= $_SESSION['nombre'] ?>, </p>
-          <p>Perfil:  <strong><?= $perfil ?></strong></p>
+					<p><?= $_SESSION['nombre'] ?>, </p>
+					<p>Perfil:  <strong><?= $perfil ?></strong></p>
 
 
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          
         </div>
       </div>
 
@@ -170,7 +210,7 @@ $footer = getFooter();
 
       <!-- Sidebar Menu -->
 
-      <?= $menu ?>
+			<?= $menu ?>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -178,141 +218,73 @@ $footer = getFooter();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Contenido web -->
-
-
+    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Calendario
-
+        Estadisticas por paciente
+        <small>a continuación de muestra una grafica de prueba para las estadisticas por pacientes</small>
       </h1>
-
+      
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content container-fluid">
 
-              <!-- THE CALENDAR -->
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
 
-
-              <div class="container">
+        <div class="container">
                   <div class="row">
-                      <div class="col-md-3"></div>
-                      <div class="col-md-6"><div id="calendar"></div></div>
+                      <div class="col-md-3">Controles de busqueda </div>
+                      <div class="col-md-6">
+
+                          <div id="curve_chart" style="width: 600px; height: 500px"></div>
+
+                      </div>
                       <div class="col-md-3"></div>
 
 
                   </div>
-              </div>
 
-              <!--zona pruebas -->
-              
+                 <div class = "row">
+                    <div class="col-md-4">
+                    <button type="button" class="btn btn-secondary">Imprimir</button>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                  </div>
 
-              <!-- fin zona pruebas -->
 
-</div>
-  <!--footer -->
+          </div>
+
+
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
   <?= $footer ?>
 
-
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
+<!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Slimscroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- fullCalendar -->
-<script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-<script src="bower_components/fullcalendar/es.js"></script>
-<!-- bootstrap -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-
-
-<script>
-  $(function () {
-
-
-    $('#calendar').fullCalendar({
-        header:{
-          left:'today,prev,next,MiBoton',
-          center:'title',
-          right:'month,basicWeek,basicDay,agendaWeek,agendaDay'
-        },
-        customButtons:{
-          MiBoton:{
-            text:"Botón 1",
-            click:function(){
-              alert("Acción del botón ");
-            }
-          }
-        },
-        dayClick:function( date, sjEvent, view){
-          alert("Valor Seleccionado:"+date.format());
-          alert("Vista actual:"+view.name);
-          $(this).css('background-color','red');
-          $('#exampleModal').modal();
-
-        },
-        events: [
-          {
-            title : 'presentación proyecto de titulo',
-            start : '2018-12-14T14:00:00',
-            allDay : false 
-          }
-           
-
-        ]
-
-
-    });
-
-});
-</script>
-
-<!-- Modal de mensaje calendario-->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Titulo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-
-        <button type="button" class="btn btn-success">Agregar</button>
-        <button type="button" class="btn btn-success">Modificar</button>
-        <button type="button" class="btn btn-danger">Borrar</button>
-
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
 </html>

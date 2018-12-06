@@ -9,7 +9,7 @@ include('configuracion.php');
 function getUsuarios(){
 	$usuarios = mysql_query("SELECT * FROM clientes");
 
-	$resultado ='<table class="table table-striped">
+	$resultado ='<table class="table">
 					<thead>
 				  <tr>
 				  	<th scope="col">ID</th>
@@ -19,14 +19,16 @@ function getUsuarios(){
 					<th scope="col">PASS</th>
 					<th scope="col">EMAIL</th>
 					<th scope="col">TELÉFONO</th>
-					<th scope="col">>NIVEL</th>
-					<th></th>
-					<th></th>
-				  </tr> </thead>';
+					<th scope="col">NIVEL</th>
+					</tr>
+					
+				  </thead>';
 
 	while($fila = mysql_fetch_array($usuarios)){
 
-	$resultado .='<tr>
+	$resultado .='
+				<tbody>
+				<tr>
 					<td>'.$fila['id_cliente'].'</td>
 					<td>'.$fila['nombre'].'</td>
 					<td>'.$fila['apellidos'].'</td>
@@ -37,7 +39,8 @@ function getUsuarios(){
 					<td>'.$fila['nivel'].'</td>
 					<td><a href="editar_usuarios.php?id='.$fila['id_cliente'].'" class="enlace_rojo">Editar</a></td>
 					<td><a href="borrar_usuarios.php" class="enlace_rojo">Borrar</a></td>
-				  </tr>';
+				  </tr>
+				  <tbody>';
 	}
 
 	$resultado .='</table>';

@@ -6,7 +6,7 @@ include('funciones/footer.php');
 session_start();
 
 
-//impedimos el acceso a las personas que NO se han logado
+//impedimos el acceso a las personas que NO se han estén indentificadas
 
 if($_SESSION['nivel']==1 || $_SESSION['nivel']==2)
 {
@@ -27,10 +27,7 @@ $footer = getFooter();
 ?>
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -171,7 +168,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="dist/img/gato-pizza.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
 
@@ -180,7 +177,7 @@ desired effect
 
 
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          
         </div>
       </div>
 
@@ -201,13 +198,10 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Clinica Psiquiatrica
-        <small>rellenar con descripciones</small>
+        Sistema para clinicas TuClinic
+        <small>Descripción del proyecto</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
+      
     </section>
 
     <!-- Main content -->
@@ -228,7 +222,7 @@ desired effect
 
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+<div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 

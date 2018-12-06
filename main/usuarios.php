@@ -2,6 +2,7 @@
 
 include('funciones/menu.php');
 include('funciones/consultas.php');
+include('funciones/footer.php');
 
 //impedimos el acceso a las personas que NO se han logado
 
@@ -15,13 +16,12 @@ if($_SESSION['nivel']==1){
 	$usuarios = getUsuarios();
 }
 
+$footer = getFooter();
+
 ?>
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -75,81 +75,89 @@ desired effect
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
+  
   <!-- Main Header -->
   <header class="main-header">
-
-    <!-- Logo -->
-    <a href="index.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>C</b>linica</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Clinica Psiquiatrica</b>Clinica</span>
-    </a>
-
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
+      
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>Tu</b>Clinic</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Tu</b>Clinic</span>
       </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
+  
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+  
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!-- The user image in the navbar-->
+                <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs">
+                                  <?= $_SESSION['nombre'] ?>
+                              </span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- The user image in the menu -->
+                <!--<li class="user-header">
+                  <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+  
+                  <p>
+                    Alexander Pierce - Web Developer
+                    <small>Member since Nov. 2012</small>
+                  </p>
+                </li>-->
+                <!-- Menu Body -->
+                <li class="user-body">
+                  <div class="row">
+                    <div class="col-xs-4 text-center">
+                      <a href="#"></a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#"></a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#"></a>
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <!--<a href="#" class="btn btn-default btn-flat">Perfil</a>-->
+                  </div>
+  
+                  <div class="pull-right">
+                    <a href="../login/salir.php" class="btn btn-default btn-flat">Cerrar Session</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+            <!--<li>
+              <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            </li>-->
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-          <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Fernando Escobar</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <!--<li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>-->
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#"></a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#"></a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#"></a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Cerrar Session</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <!--<li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>-->
-        </ul>
-      </div>
-    </nav>
-  </header>
+
+
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
 
@@ -159,12 +167,16 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="dist/img/gato-pizza.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Fernando Escobar</p>
+
+					<p><?= $_SESSION['nombre'] ?>, </p>
+					<p>Perfil:  <strong><?= $perfil ?></strong></p>
+
+
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          
         </div>
       </div>
 
@@ -173,30 +185,12 @@ desired effect
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENU</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="index.php"><i class="fa fa-link"></i> <span>Inicio</span></a></li>
-        <li><a href="usuarios.php"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
-        <li><a href="pacientes.php"><i class="fa fa-link"></i> <span>Pacientes</span></a></li>
 
-        <li><a href="estadisticas.php"><i class="fa fa-link"></i> <span>Estadisticas</span></a></li>
-
-        <!--<li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>-->
-      </ul>
+			<?= $menu ?>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
+
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -204,51 +198,107 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Clinica Psiquiatrica
-        <small>rellenar con descripciones</small>
+        Listado de Asistentes
+        <small> </small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
+      
     </section>
+
+
+
+
 
     <!-- Main content -->
     <section class="content container-fluid">
 
-      <div class="clearfix"></div>
-      <h2 class="principal">Usuarios Actuales</h2>
-      	<?= $usuarios ?>
+      
+      
+      <?= $usuarios ?>
 
-      <h2 class="principal">Alta Usuarios</h2>
-      <div class="formulario">
-      	<form action="funciones/crear_usuarios.php" method="post" id="form_home">
 
-          	<label for="nombre">Nombre</label>
-              <input id="nombre" name="nombre" />
+      <section class="content-header">
+      <h1>
+        Agregar Asistente
+        <small> </small>
+      </h1>
+      
+    </section>
 
-              <label for="apellidos">Apellidos</label>
-              <input id="apellidos" name="apellidos" />
 
-              <label for="user">Usuario</label>
-              <input id="user" name="user" />
+    <!-- contenedor del formulario para agregar asistentes-->
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-6">
 
+
+            <form action="funciones/crear_usuarios.php" method="post" id="form_home">
+            
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" class="form-control" name="nombre">
+                
+              </div>
+              
+              <div class="form-group">
+                  <label for="apellidos">Apellidos</label>
+                  <input id="apellidos" class="form-control" name="apellidos">
+
+              </div>
+              
+              <div class="form-group">
+                <label for="user">Usuario</label>
+                <input id="user" class="form-control" name="user" />
+              </div>
+              
+            <div class="form-group">
               <label for="pass">Contraseña</label>
-              <input id="pass" name="pass" />
+              <input id="pass" class="form-control" name="pass" />
 
+            </div>
+              
+            <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" name="email" />
+              <input id="email" class="form-control" name="email" />
 
+            </div>
+              
+            <div class="form-group">
               <label for="telefono">Teléfono</label>
-              <input id="telefono" name="telefono" />
+              <input id="telefono" class="form-control" name="telefono" />
+            </div>
+              
 
+            <div class="form-group">
               <label for="nivel">Nivel</label>
-              <input id="nivel" name="nivel" />
+              <input id="nivel" class="form-control" name="nivel" />
+            </div>
+              
 
-              <input type="submit" value="Dar de Alta" class="b_inicio"/>
+              <input type="submit" value="Agregar" class="b_inicio"/>
+            
+          	  
 
           </form>
-      </div>
+
+          
+                
+      	  
+      
+
+
+
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+
+
+    <!-- fin contenedor asistente-->
+
+      
 
       <!--------------------------
         | Your Page Content Here |

@@ -15,7 +15,7 @@ if($_SESSION['nivel']==1){
 	$telefono = strip_tags(addslashes($_POST['telefono']));
 	$nivel = strip_tags(addslashes($_POST['nivel']));
 	
-	mysql_query("INSERT INTO usuarios (nombre, apellidos, user, pass, email, telefono, nivel) VALUES ('$nombre','$apellidos','$user','$pass','$email','$telefono','$nivel')");
+	mysql_query("INSERT INTO clientes (nombre, apellidos, user, pass, email, telefono, nivel) VALUES ('$nombre','$apellidos','$user','$pass','$email','$telefono','$nivel')");
 
 	define('PAGINA_INICIO','../usuarios.php');
 	header('Location: '.PAGINA_INICIO);

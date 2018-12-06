@@ -2,25 +2,30 @@
 include('funciones/menu.php');
 include('funciones/consultas.php');
 //impedimos el acceso a las personas que NO se han logado
-if($_SESSION['nivel']==1){
-//asignamos el menú en función de si es NIVEL 1 o NIVEL 2
-	$menu = getMenuMedico();
+if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
+
+  if($_SESSION['nivel']=='1'){
+    $menu = getMenuMedico();
 	$perfil = 'MEDICO';
 	$usuarios = getUsuarios();
   $pacientes = getPacientes();
+  }else{
+    $menu = getMenuAsistente();
+	$perfil = 'ASISTENTE';
+	$usuarios = getUsuarios();
+  $pacientes = getPacientes();
+  }
+	
 }
 ?>
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Clinica Psiquiatrica | Servicio web</title>
+  <title>tuCLinic | Servicio web</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -73,11 +78,11 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>C</b>linica</span>
+      <span class="logo-mini"><b>Tu</b>Clinic</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Clinica Psiquiatrica</b>Clinica</span>
+      <span class="logo-lg"><b>Tu</b>Clinic</span>
     </a>
 
     <!-- Header Navbar -->
@@ -98,7 +103,9 @@ desired effect
               <!-- The user image in the navbar-->
               <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Fernando Escobar</span>
+              <span class="hidden-xs">
+								<?= $_SESSION['nombre'] ?>
+							</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -128,10 +135,11 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <!--<a href="#" class="btn btn-default btn-flat">Perfil</a>-->
                 </div>
+
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Cerrar Session</a>
+                  <a href="../login/salir.php" class="btn btn-default btn-flat">Cerrar Session</a>
                 </div>
               </li>
             </ul>
@@ -153,12 +161,16 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="dist/img/gato-pizza.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Fernando Escobar</p>
+
+					<p><?= $_SESSION['nombre'] ?>, </p>
+					<p>Perfil:  <strong><?= $perfil ?></strong></p>
+
+
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          
         </div>
       </div>
 
@@ -167,27 +179,8 @@ desired effect
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENU</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="index.php"><i class="fa fa-link"></i> <span>Inicio</span></a></li>
-        <li><a href="usuarios.php"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
-        <li><a href="pacientes.php"><i class="fa fa-link"></i> <span>Pacientes</span></a></li>
 
-        <li><a href="estadisticas.php"><i class="fa fa-link"></i> <span>Estadisticas</span></a></li>
-
-        <!--<li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>-->
-      </ul>
+			<?= $menu ?>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -198,16 +191,17 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Pacientes
-        <small>Ingresados</small>
+        Sistema para clinicas TuClinic
+        <small>Descripción del proyecto</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
+      
     </section>
 
     <!-- Main content -->
+
+
+
+
     <section class="content container-fluid">
 
       <!--------------------------
@@ -301,25 +295,18 @@ desired effect
 
 
 
-    </section>
+</section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-      proyecto de titulo INACAP
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; Nosotros 2018 <a href="#">Nosotros</a>.</strong> Todos los derechos reservados
-  </footer>
+  <?= $footer ?>
 
 
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+<div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 

@@ -4,7 +4,7 @@
 		$error = "Su usuario o contraseña son incorrectos";
 	}
 	if(isset($_GET['mensaje'])&&($_GET['mensaje']=='gracias')){
-		$error = "Gracias por utilizar nuestra web";
+		$error = "Gracias por utilizar tuClinic";
 	}
 	if(isset($_GET['mensaje'])&&($_GET['mensaje']=='sin_permiso')){
 		$error = "No tienes permiso para acceder a esta URL";
