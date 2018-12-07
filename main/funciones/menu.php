@@ -47,7 +47,20 @@ function getMenuAsistente(){
 		<!-- Optionally, you can add icons to the links -->
 		<li><a href="index.php"> <i class="fa fa-home"></i> <span>Inicio</span></a></li>
 		
-		<li><a href="pacientes.php"> <i class="fa fa-users"></i> <span>Pacientes</span></a></li>
+		
+		<li class="treeview">
+			<a href="#"><i class="fa fa-users"></i> <span>Pacientes</span>
+				<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+			</a>
+			<ul class="treeview-menu">
+				<li><a href="pacientes.php">Pacientes</a></li>
+				<li><a href="nuevo_paciente.php">Agregar paciente</a></li>
+			</ul>
+		</li>
+
+
 		<li><a href="horarios.php"> <i class="fa fa-calendar"></i> <span>toma de hora</span></a></li>
 		<li><a href="ficha.php"><i class="fa fa-edit"></i> <span>Ficha médica</span></a></li>
 		

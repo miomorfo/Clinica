@@ -11,7 +11,7 @@ function getUsuarios(){
 
 	$resultado ='<table class="table">
 					<thead>
-				  <tr>
+				  	<tr>
 				  	<th scope="col">ID</th>
 					<th scope="col">NOMBRE</th>
 					<th scope="col">APELLIDOS</th>
@@ -54,28 +54,31 @@ function getPacientes(){
 
 	$pacientes = mysql_query("SELECT * FROM pacientes");
 
-	$resultado ='<table class="table table-striped">
-				  <tr>
-				  <th scope="col">ID</th>
+	$resultado ='<table class="table">
+					<thead>
+					<tr>
+				  	<th scope="col">ID</th>
 					<th scope="col">RUT</th>
 					<th scope="col">NOMBRES</th>
 					<th scope="col">APELLIDOS</th>
 					<th scope="col">SEXO</th>
-					<th scope="col">ANT. FAMILIARES</th>
-					<th scope="col"ANT. PERSONALES</th>
-					<th scope="col"TELEFONO</th>
-					<th scope="col"PREVISIÓN</th>
-					<th scope="col"DIRECCIÓN</th>
+					<th scope="col">ANT. F</th>
+					<th scope="col">ANT. P</th>
+					<th scope="col">TELEFONO</th>
+					<th scope="col">PREVISIÓN</th>
+					<th scope="col">DIRECCIÓN</th>
 					<th scope="col">CORREO</th>
 					<th scope="col">FECHA NACIMIENTO</th>
-					<th scope="col">TIPO ENFERMEDAD</th>
-					<th></th>
-					<th></th>
-				  </tr>';
+					
+					</tr>
+					
+				  	</thead>';
 
 					while($fila = mysql_fetch_array($pacientes)){
 
-					$resultado .='<tr>
+					$resultado .='
+									<tbody>
+									<tr>
 
 									<td>'.$fila['id_paciente'].'</td>
 									<td>'.$fila['rut'].'</td>
@@ -89,16 +92,27 @@ function getPacientes(){
 									<td>'.$fila['direccion'].'</td>
 									<td><a href="mailto:'.$fila['correo'].'">'.$fila['correo'].'</a></td>
 									<td>'.$fila['fecha_nacimiento'].'</td>
-
 									<td><a href="editar_paciente.php?id='.$fila['id_paciente'].'" class="enlace_rojo">Editar</a></td>
 									<td><a href="borrar_paciente.php" class="enlace_rojo">Borrar</a></td>
-									</tr>';
+									</tr>
+									</tbody>';
 								}
 
 	$resultado .='</table>';
 	return $resultado;
 }
 
+
+
+
+function getFicha(){
+
+	$ficha = mysql_query("SELECT rut FROM pacientes");
+	$resultado = $mysqli->query($ficha);
+	return $resultado;
+
+
+}
 
 
 ?>

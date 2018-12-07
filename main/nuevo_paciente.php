@@ -1,7 +1,6 @@
 <?php
 include('funciones/menu.php');
 include('funciones/consultas.php');
-include('funciones/footer.php');
 //impedimos el acceso a las personas que NO se han logado
 if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
 
@@ -18,8 +17,6 @@ if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
   }
 	
 }
-
-$footer = getFooter();
 ?>
 
 <!DOCTYPE html>
@@ -211,43 +208,74 @@ desired effect
         | Your Page Content Here |
         -------------------------->
 
-        <!--<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellidos</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>-->
+        
 
-<!---->
+<h2 class="principal">Ingresar paciente</h2>
+<div class="formulario form-group">
+	<form action="funciones/crear_pacientes.php" method="post" id="form_home">
 
-<h2 class="principal">Pacientes Actuales</h2>
-	<?= $pacientes ?>
+			<div class="row">
+				<div class="col-md-2 col-lg-2">
+					<label for="rut">Rut</label>
+					<input id="rut" name="rut" class="form-control"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4 col-lg-4">
+                 <label for="nombre">Nombre</label>
+                 <input id="nombre" name="nombre" class="form-control"/>
+                </div>    
+            </div>
+
+            <div class="row">
+			    <div class="col-md-4 col-lg-4">
+        	        <label for="apellidos">Apellidos</label>
+        	        <input id="apellidos" name="apellidos" class="form-control"/>
+				</div>
+			</div>
+
+            <div class="row">
+			    <div class="col-md-2 col-lg-2">
+                <label for="sexo">Sexo</label>
+                    <select class="form-control">
+                        <option>masculino</option>
+                        <option>femenino</option>
+                        
+                    </select>
+        	        
+				</div>
+            </div>
+            
 
 
+
+
+			<div class="row">
+				<div class="col-md-6">
+	                <label for="user">Direccion</label>
+	                 <input id="user" name="user" class="form-control"/>
+                </div>
+            </div>   
+
+				<div class="col-md-6">
+					<label for="telefono">Teléfono</label>
+	        <input id="telefono" name="telefono" class="form-control"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+	        <label for="email">Email</label>
+	        <input id="email" name="email" class="form-control"/>
+				</div>
+			</div>
+
+				<br>
+        <input type="submit" value="Dar de Alta" class="b_inicio btn btn-info"/>
+
+    </form>
+</div>
 
 
 <!---->

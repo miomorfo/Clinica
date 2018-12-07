@@ -1,25 +1,33 @@
 <?php
-include('funciones/menu.php');
-include('funciones/consultas.php');
-include('funciones/footer.php');
-//impedimos el acceso a las personas que NO se han logado
-if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
 
-  if($_SESSION['nivel']=='1'){
-    $menu = getMenuMedico();
+include('funciones/menu.php');
+include('funciones/footer.php');
+include('funciones/consultas.php');
+
+
+
+//impedimos el acceso a las personas que NO se han estén indentificadas
+
+if($_SESSION['nivel']==1 || $_SESSION['nivel']==2)
+{
+
+
+//asignamos el menú en función de si es NIVEL 1 o NIVEL 2
+if($_SESSION['nivel']=='1'){
+	$menu = getMenuMedico();
 	$perfil = 'MEDICO';
-	$usuarios = getUsuarios();
-  $pacientes = getPacientes();
-  }else{
-    $menu = getMenuAsistente();
-	$perfil = 'ASISTENTE';
-	$usuarios = getUsuarios();
-  $pacientes = getPacientes();
-  }
-	
+}else{
+	$menu = getMenuAsistente();
+    $perfil = 'ASISTENTE';
+    
+}
 }
 
 $footer = getFooter();
+
+
+$mysqli = new mysqli('localhost', 'root', '', 'consultadb');
+
 ?>
 
 <!DOCTYPE html>
@@ -201,60 +209,31 @@ desired effect
     </section>
 
     <!-- Main content -->
-
-
-
-
     <section class="content container-fluid">
 
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
 
-        <!--<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellidos</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>-->
+        <form action="nueva_ficha.php" method="POST" id="combo" name="combo">
+            <div> selecciona rut
+            <select>
+                <option value="0">Seleccione:</option>
+                <?php
+                $query = $mysqli -> query ("SELECT id_paciente, rut FROM pacientes");
+                while ($valores = mysqli_fetch_array($query)) {
+                echo '<option value="'.$valores[id_paciente].'">'.$valores[rut].'</option>';
+                 }
+                ?>
+            </select>
 
-<!---->
-
-<h2 class="principal">Pacientes Actuales</h2>
-	<?= $pacientes ?>
+            </div>
+        </form>
 
 
 
 
-<!---->
-
-
-
-</section>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
