@@ -1,26 +1,45 @@
 <?php
+
 include('funciones/menu.php');
-include('funciones/consultas.php');
 include('funciones/footer.php');
+include('funciones/configuracion.php');
 
-//impedimos el acceso a las personas que NO se han logado
-if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
 
-  if($_SESSION['nivel']=='1'){
-    $menu = getMenuMedico();
+
+
+//impedimos el acceso a las personas que NO se han estén indentificadas
+
+if($_SESSION['nivel']==1 || $_SESSION['nivel']==2)
+{
+
+
+//asignamos el menú en función de si es NIVEL 1 o NIVEL 2
+if($_SESSION['nivel']=='1'){
+	$menu = getMenuMedico();
 	$perfil = 'MEDICO';
-	$usuarios = getUsuarios();
-  $pacientes = getPacientes();
-  }else{
-    $menu = getMenuAsistente();
-	$perfil = 'ASISTENTE';
-	$usuarios = getUsuarios();
-  $pacientes = getPacientes();
-  }
-	
+}else{
+	$menu = getMenuAsistente();
+    $perfil = 'ASISTENTE';
+    $id = $_GET['id'];
+    $pacientes = mysql_query("SELECT * FROM pacientes WHERE id_paciente ='$id'");
+
+    while ($fila = mysql_fetch_array($pacientes)){
+        $id = $fila['id_paciente'];
+        $rut = $fila['rut'];
+        $nombre = $fila['nombre'];
+        $apellidos = $fila['apellidos'];
+        $telefono = $fila['telefono'];
+        $prevision = $fila['prevision'];
+        $direccion = $fila['direccion'];
+        $correo = $fila['correo'];
+    }
+}
+
+
 }
 
 $footer = getFooter();
+
 ?>
 
 <!DOCTYPE html>
@@ -202,60 +221,91 @@ desired effect
     </section>
 
     <!-- Main content -->
-
-
-
-
     <section class="content container-fluid">
 
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
 
-        <!--<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellidos</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>-->
+<h2 class="principal">Editar usuarios</h2>
+<div class="formulario form-group">
+	<form action="funciones/editar_paciente_funcion.php?id=<?= $id ?>" method="post" id="form_home">
 
-<!---->
+			<div class="row">
+				<div class="col-md-2 col-lg-2">
+					<label for="rut">Rut</label>
+					<input id="rut" name="rut" class="form-control" value="<?= $rut ?>"/>
+				</div>
+			</div>
 
-<h2 class="principal">Pacientes Actuales</h2>
-	<?= $pacientes ?>
+			<div class="row">
+				<div class="col-md-4 col-lg-4">
+                 <label for="nombre">Nombre</label>
+                 <input id="nombre" name="nombre" class="form-control" value="<?= $nombre ?>"/>
+                </div>    
+            </div>
+
+            <div class="row">
+			    <div class="col-md-4 col-lg-4">
+        	        <label for="apellidos">Apellidos</label>
+        	        <input id="apellidos" name="apellidos" class="form-control" value="<?= $apellidos ?>"/>
+				</div>
+			</div>
+
+            <!--<div class="row">
+			    <div class="col-md-2 col-lg-2">
+                <label for="sexo">Sexo</label>
+                    <select class="form-control">
+                        <option>masculino</option>
+                        <option>femenino</option>
+                        
+                    </select>
+        	        
+				</div>
+            </div>-->
+            
+            <div class="row">
+			    <div class="col-md-4 col-lg-4">
+				    <label for="telefono">Teléfono</label>
+	                <input id="telefono" name="telefono" class="form-control" value="<?= $telefono ?>"/>
+			    </div>
+		    </div>            
+
+            <div class="row">
+				<div class="col-md-4 col-lg-4">
+	                <label for="prevision">Previsión</label>
+	                 <input id="prevision" name="prevision" class="form-control" value="<?= $prevision ?>"/>
+                </div>
+            </div>  
+
+			<div class="row">
+				<div class="col-md-4 col-lg-4">
+	                <label for="direccion">Direccion</label>
+	                 <input id="direccion" name="direccion" class="form-control" value="<?= $direccion ?>"/>
+                </div>
+            </div>   
 
 
+			<div class="row">
+				<div class="col-md-4 col-lg-4">
+	        <label for="corre">Email</label>
+	        <input id="correo" name="correo" class="form-control" value="<?= $correo ?>"/>
+				</div>
+			</div>
+
+				<br>
+        <input type="submit" value="Guardar Cambios" class="b_inicio btn btn-info"/>
+
+    </form>
+</div>
 
 
-<!---->
+        <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
 
 
-
-</section>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

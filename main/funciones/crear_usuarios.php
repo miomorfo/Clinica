@@ -16,16 +16,7 @@ if($_SESSION['nivel']==1){
 	$nivel = strip_tags(addslashes($_POST['nivel']));
 
 
-	$rut = strip_tags(addslashes($_POST['rut']));
-	$nombre = strip_tags(addslashes($_POST['nombre']));
-	$apellidos = strip_tags(addslashes($_POST['apellidos']));
-	$sexo = strip_tags(addslashes($_POST['sexo']));
-	$antecedentes_familiares = strip_tags(addslashes($_POST['antecedentes_familiares']));
-	$antecedentes_personales = strip_tags(addslashes($_POST['antecedentes_personales']));
-	$telefono = strip_tags(addslashes($_POST['telefono']));
-	$prevision = strip_tags(addslashes($_POST['previsión']));
-	$correo = strip_tags(addslashes($_POST['correo']));
-	$fecha_nacimiento = strip_tags(addslashes($_POST['fecha_nacimiento']));
+	
 	
 	mysql_query("INSERT INTO clientes (nombre, apellidos, user, pass, email, telefono, nivel) VALUES ('$nombre','$apellidos','$user','$pass','$email','$telefono','$nivel')");
 

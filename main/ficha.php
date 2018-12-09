@@ -6,7 +6,7 @@ include('funciones/consultas.php');
 
 
 
-//impedimos el acceso a las personas que NO se han estén indentificadas
+//impedimos el acceso a las personas que NO estén indentificadas
 
 if($_SESSION['nivel']==1 || $_SESSION['nivel']==2)
 {
@@ -216,18 +216,40 @@ desired effect
         -------------------------->
 
         <form action="nueva_ficha.php" method="POST" id="combo" name="combo">
-            <div> selecciona rut
-            <select>
+            <?php $query = $mysqli -> query ("SELECT * FROM pacientes");
+                while ($valores = mysqli_fetch_array($query)) {
+            ?>        
+            <div> selecciona rut </div>
+           <!-- <select>
                 <option value="0">Seleccione:</option>
-                <?php
-                $query = $mysqli -> query ("SELECT id_paciente, rut FROM pacientes");
+                </*?php
+                $query = $mysqli -> query ("SELECT * FROM pacientes");
                 while ($valores = mysqli_fetch_array($query)) {
                 echo '<option value="'.$valores[id_paciente].'">'.$valores[rut].'</option>';
                  }
-                ?>
+                */?>
+            </select>
+            </div> -->
+            <select>
+
+            <?php
+                
+                echo '<option value="'.$valores[id_paciente].'">'.$valores[rut].'</option>';
+                
+                
+                
+                
+                 }
+            ?>
             </select>
 
+          <div class="row">
+                <div class="fcol-md-4 col-lg-4">
+                    <label for="antecedentes_familiares">Antecedentes familiares</label>
+                    <textarea class="antecedentes_familiares" id="antecedentes_familiares" rows="3"></textarea>
+                </div>
             </div>
+
         </form>
 
 

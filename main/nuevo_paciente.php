@@ -253,16 +253,18 @@ desired effect
 
 			<div class="row">
 				<div class="col-md-6">
-	                <label for="user">Direccion</label>
-	                 <input id="user" name="user" class="form-control"/>
-                </div>
-            </div>   
+	                <label for="direccion">Direccion</label>
+	                 <input id="direccion" name="direccion" class="form-control"/>
+        </div>
+      </div>   
 
-				<div class="col-md-6">
+      <div class="row">
+			  <div class="col-md-6">
 					<label for="telefono">Teléfono</label>
 	        <input id="telefono" name="telefono" class="form-control"/>
 				</div>
 			</div>
+
 
 			<div class="row">
 				<div class="col-md-6">

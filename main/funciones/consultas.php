@@ -54,7 +54,7 @@ function getPacientes(){
 
 	$pacientes = mysql_query("SELECT * FROM pacientes");
 
-	$resultado ='<table class="table">
+	$resultado ='<table class="table table-striped">
 					<thead>
 					<tr>
 				  	<th scope="col">ID</th>
@@ -62,8 +62,7 @@ function getPacientes(){
 					<th scope="col">NOMBRES</th>
 					<th scope="col">APELLIDOS</th>
 					<th scope="col">SEXO</th>
-					<th scope="col">ANT. F</th>
-					<th scope="col">ANT. P</th>
+					
 					<th scope="col">TELEFONO</th>
 					<th scope="col">PREVISIÓN</th>
 					<th scope="col">DIRECCIÓN</th>
@@ -85,15 +84,14 @@ function getPacientes(){
 									<td>'.$fila['nombre'].'</td>
 									<td>'.$fila['apellidos'].'</td>
 									<td>'.$fila['sexo'].'</td>
-									<td>'.$fila['antecedentes_familiares'].'</td>
-									<td>'.$fila['antecedentes_personales'].'</td>
+								
 									<td><a href="tel:'.$fila['telefono'].'">'.$fila['telefono'].'</a></td>
 									<td>'.$fila['prevision'].'</td>
 									<td>'.$fila['direccion'].'</td>
 									<td><a href="mailto:'.$fila['correo'].'">'.$fila['correo'].'</a></td>
 									<td>'.$fila['fecha_nacimiento'].'</td>
-									<td><a href="editar_paciente.php?id='.$fila['id_paciente'].'" class="enlace_rojo">Editar</a></td>
-									<td><a href="borrar_paciente.php" class="enlace_rojo">Borrar</a></td>
+									<td><a href="editar_paciente.php?id='.$fila['id_paciente'].'" ><span class="label label-warning">Editar</span></a></td>
+									<td><a href="borrar_paciente.php" ><span class="label label-danger">Eliminar</span></a></td>
 									</tr>
 									</tbody>';
 								}
@@ -105,14 +103,6 @@ function getPacientes(){
 
 
 
-function getFicha(){
-
-	$ficha = mysql_query("SELECT rut FROM pacientes");
-	$resultado = $mysqli->query($ficha);
-	return $resultado;
-
-
-}
 
 
 ?>
