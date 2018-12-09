@@ -91,7 +91,7 @@ function getPacientes(){
 									<td><a href="mailto:'.$fila['correo'].'">'.$fila['correo'].'</a></td>
 									<td>'.$fila['fecha_nacimiento'].'</td>
 									<td><a href="editar_paciente.php?id='.$fila['id_paciente'].'" ><span class="label label-warning">Editar</span></a></td>
-									<td><a href="borrar_paciente.php" ><span class="label label-danger">Eliminar</span></a></td>
+									<td><a href="funciones/eliminar_paciente.php?id='.$fila['id_paciente'].'" " onclick= "return confirmar()" ><span class="label label-danger">Eliminar</span></a></td>
 									</tr>
 									</tbody>';
 								}

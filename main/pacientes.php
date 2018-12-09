@@ -54,6 +54,14 @@ $footer = getFooter();
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <script type="text/javascript">
+        function confirmar(){
+          if(!confirm('va a eliminar un paciente ¿es correcto?')){
+            return false;
+          }
+        }
+  </script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -82,7 +90,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index.html" class="logo">
+    <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Tu</b>Clinic</span>
       <!-- logo for regular state and mobile devices -->
