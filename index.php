@@ -25,7 +25,13 @@
 </head>
 
 <body>
-<div id="form_home" class="form-group">
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-lg-4"></div>
+		<div class="col-md-4 col-lg-4">
+
+			<div id="form_home" class="form-group">
 	<form action="login/autenticar.php" method="post" onSubmit="return validacion_index()" id="f_inicio" name="f_inicio">
 
     <label for="email" class="email">Usuario</label>
@@ -41,6 +47,13 @@
     </form>
     <p class="rojo"><? echo $error ?></p>
 </div>
+
+
+		</div>
+		<div class="col-md-4 col-lg-4"></div>
+	</div>
+</div>
+
 
 </body>
 </html>

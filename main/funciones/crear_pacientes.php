@@ -12,14 +12,14 @@ if($_SESSION['nivel']==2){
 	$nombre = strip_tags(addslashes($_POST['nombre']));
 	$apellidos = strip_tags(addslashes($_POST['apellidos']));
 	$sexo = strip_tags(addslashes($_POST['sexo']));
-	$antecedentes_familiares = strip_tags(addslashes($_POST['antecedentes_familiares']));
-	$antecedentes_personales = strip_tags(addslashes($_POST['antecedentes_personales']));
+
 	$telefono = strip_tags(addslashes($_POST['telefono']));
 	$prevision = strip_tags(addslashes($_POST['prevision']));
+	$direccion = strip_tags(addslashes($_POST['direccion']));
 	$correo = strip_tags(addslashes($_POST['correo']));
-	$fecha_nacimiento = strip_tags(addslashes($_POST['fecha_nacimiento']));
 	
-	mysql_query("INSERT INTO pacientes (rut, nombre, apellidos, sexo, antecedentes_familiares, antecedentes_personales, telefono, prevision, correo, fecha_nacimiento) VALUES ('$rut','$nombre','$apellidos','$sexo','$antecedentes_familiares','$antecedentes_personales','$telefono','$prevision','$correo','$fecha_nacimiento')");
+	
+	mysql_query("INSERT INTO pacientes (id_cliente, rut, nombre, apellidos, sexo, telefono, prevision, direccion, correo) VALUES ('3','$rut','$nombre','$apellidos','$sexo','$telefono','$prevision','$direccion', '$correo')");
 
 	define('PAGINA_INICIO','../pacientes.php');
 	header('Location: '.PAGINA_INICIO);

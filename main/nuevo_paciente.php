@@ -225,56 +225,67 @@ desired effect
 				<div class="col-md-4 col-lg-4">
                  <label for="nombre">Nombre</label>
                  <input id="nombre" name="nombre" class="form-control"/>
-                </div>    
-            </div>
+        </div>    
+      </div>
 
-            <div class="row">
+      <div class="row">
 			    <div class="col-md-4 col-lg-4">
         	        <label for="apellidos">Apellidos</label>
         	        <input id="apellidos" name="apellidos" class="form-control"/>
 				</div>
 			</div>
 
-            <div class="row">
+      <div class="row">
 			    <div class="col-md-2 col-lg-2">
                 <label for="sexo">Sexo</label>
-                    <select class="form-control">
-                        <option>masculino</option>
-                        <option>femenino</option>
+                    <select class="form-control" name="sexo">
+                        <option value="masculino">masculino</option>
+                        <option value="femenino">femenino</option>
                         
                     </select>
         	        
-				</div>
-            </div>
-            
-
-
-
-
-			<div class="row">
-				<div class="col-md-6">
-	                <label for="direccion">Direccion</label>
-	                 <input id="direccion" name="direccion" class="form-control"/>
-        </div>
-      </div>   
+				  </div>
+      </div>
+        
+    
 
       <div class="row">
-			  <div class="col-md-6">
+			  <div class="col-md-2 col-lg-2">
 					<label for="telefono">Teléfono</label>
 	        <input id="telefono" name="telefono" class="form-control"/>
+				</div>
+      </div>
+      
+      <div class="row">
+			    <div class="col-md-2 col-lg-2">
+                <label for="prevision">prevision</label>
+                    <select class="form-control" name="prevision">
+                        <option value="fonasa">Fonasa</option>
+                        <option value="isapre">Isapre</option>
+                        
+                    </select>
+        	        
+				  </div>
+      </div>
+
+
+      <div class="row">
+				<div class="col-md-6">
+	        <label for="direccion">Dirección</label>
+	        <input id="direccion" name="direccion" class="form-control"/>
 				</div>
 			</div>
 
 
 			<div class="row">
 				<div class="col-md-6">
-	        <label for="email">Email</label>
-	        <input id="email" name="email" class="form-control"/>
+	        <label for="correo">Email</label>
+	        <input id="correo" name="correo" class="form-control"/>
 				</div>
 			</div>
 
 				<br>
-        <input type="submit" value="Dar de Alta" class="b_inicio btn btn-info"/>
+        <input type="submit" value="Agregar" class="b_inicio btn btn-info"/>
 
     </form>
 </div>
