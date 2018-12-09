@@ -13,14 +13,13 @@ if($_SESSION['nivel']==2){
     $rut = strip_tags(addslashes($_POST['rut']));
 	$nombre = strip_tags(addslashes($_POST['nombre']));
 	$apellidos = strip_tags(addslashes($_POST['apellidos']));
-	
-	
 	$telefono = strip_tags(addslashes($_POST['telefono']));
 	$prevision = strip_tags(addslashes($_POST['prevision']));
+	$direccion = strip_tags(addslashes($_POST['direccion']));
 	$correo = strip_tags(addslashes($_POST['correo']));
 	
 	
-	mysql_query("UPDATE pacientes SET rut='$rut', nombre='$nombre', apellidos='$apellidos', telefono='$telefono', prevision='$prevision', correo='$correo' WHERE id_paciente='$id'");
+	mysql_query("UPDATE pacientes SET rut='$rut', nombre='$nombre', apellidos='$apellidos', telefono='$telefono', prevision='$prevision', direccion='$direccion', correo='$correo' WHERE id_paciente='$id'");
 
 	define('PAGINA_INICIO','../pacientes.php');
 	header('Location: '.PAGINA_INICIO);
