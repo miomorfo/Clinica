@@ -2,8 +2,9 @@
 
 include('funciones/menu.php');
 include('funciones/footer.php');
+include('funciones/consultas.php');
 
-session_start();
+
 
 
 //impedimos el acceso a las personas que NO se han logado
@@ -23,6 +24,8 @@ if($_SESSION['nivel']=='1'){
 }
 
 $footer = getFooter();
+
+$mysqli = new mysqli('localhost', 'root', '', 'consultadb');
 
 ?>
 <!DOCTYPE html>
@@ -193,7 +196,24 @@ $footer = getFooter();
     <section class="content">
 
               <!-- THE CALENDAR -->
+              <?php 
+              /*$datos = mysql_query("SELECT * FROM horas");
+              $fila = mysql_fetch_array($datos);
+              $title = $fila['title'];
+              $descripcion = $fila['descripcion'];
+              $start = $fila['start'];
+              $end = $fila['end'];
+              $rut = $fila['rut'];
+              $nombre = $fila['nombre'];
+              $apellidos = $fila['apellidos'];
+              $telefono = $fila['telefono'];
+              $correo = $fila['correo'];
 
+              
+              echo json_encode($fila);
+              
+              */
+              ?>
 
               <div class="container">
                   <div class="row">
@@ -265,21 +285,22 @@ $footer = getFooter();
           }
         },
         dayClick:function( date, sjEvent, view){
-          alert("Valor Seleccionado:"+date.format());
-          alert("Vista actual:"+view.name);
-          $(this).css('background-color','red');
-          $('#exampleModal').modal();
+          //alert("Valor Seleccionado:"+date.format());
+          //alert("Vista actual:"+view.name);
+          //$(this).css('background-color','red');
+          $('#txtFecha').val(date.format());
+          $('#ModalEventos').modal();
 
         },
-        events: [
-          {
-            title : 'presentación proyecto de titulo',
-            start : '2018-12-14T14:00:00',
-            allDay : false 
-          }
-           
+        events: 'http://localhost/main/horas_calendario.php',
+        eventClick : function(calEvent, jsEvent, view){
 
-        ]
+          $('#tituloEvento').html(calEvent.title);
+          $('#descripcionEvento').html(calEvent.descripcion);
+
+          $('#exampleModal').modal();
+
+        }
 
 
     });
@@ -293,17 +314,17 @@ $footer = getFooter();
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Titulo</h5>
+        <h4 class="modal-title" id="tituloEvento"></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <div id="descripcionEvento"></div>
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-success">Agregar</button>
+        <button type="button" id="" class="btn btn-success">Agregar</button>
         <button type="button" class="btn btn-success">Modificar</button>
         <button type="button" class="btn btn-danger">Borrar</button>
 
@@ -313,6 +334,80 @@ $footer = getFooter();
     </div>
   </div>
 </div>
+
+<!-- fin modal pruebas-->
+
+
+<!-- modal agregar, modificar, eliminar-->
+
+<div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="tituloEvento"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="descripcionEvento"></div>
+
+        Fecha:<input type ="text" id="txtFecha" name="txtFecha" /><br/>
+        Titulo:<input type = "text" id="txtTitulo"> <br/>
+        Hora: <input type ="text" id="txtHora" value="10:30"/><br/>
+        Descripcion : <textarea id="txtDescripción" rows="3"></textarea><br/>
+        Rut: <input type ="text" id="txtRut"> <br/>
+        Nombre: <input type ="text" id="txtNombre"> <br/>
+        Apellidos: <input type ="text" id="txtApellidos"> <br/>
+        Telefono: <input type ="text" id="txtTelefono"> <br/>
+        Correo: <input type ="text" id="txtCorreo"> <br/>
+
+ 
+
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
+        <button type="button" class="btn btn-success">Modificar</button>
+        <button type="button" class="btn btn-danger">Borrar</button>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- fin modal crud -->
+
+
+<script>
+
+$('#btnAgregar').click(function(){
+
+      
+      
+    var NuevoEvento= {
+      title:$('#txtTitulo').val(),
+      descripcion:$('#txtDescripción').val(),
+      rut:$('#txtRut').val(),
+      start:$('#txtFecha').val()+" "+$('#txtHora').val(),
+      nombre:$('#txtNombre').val(),
+      apellidos:$('#txtApellidos').val(),
+      telefono:$('#txtTelefono').val(),
+      correo:$('#txtCorreo').val()
+
+
+    };
+    $('#calendar').fullCalendar('renderEvent',NuevoEvento );
+    $('#ModalEventos').modal('toggle');
+
+
+});
+
+</script>
 
 </body>
 </html>

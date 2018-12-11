@@ -101,6 +101,17 @@ function getPacientes(){
 }
 
 
+/*function getRut(){
+
+	$pacientes = mysql_query("SELECT * FROM pacientes");
+
+	while ($fila = mysql_fetch_array($pacientes)){
+		$fila['rut'];
+		$resultado = $fila['rut'];
+	}
+	
+	return $resultado;
+}*/
 
 
 

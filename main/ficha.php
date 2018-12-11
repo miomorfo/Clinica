@@ -20,6 +20,7 @@ if($_SESSION['nivel']=='1'){
 	$menu = getMenuAsistente();
     $perfil = 'ASISTENTE';
     
+    
 }
 }
 
@@ -27,6 +28,8 @@ $footer = getFooter();
 
 
 $mysqli = new mysqli('localhost', 'root', '', 'consultadb');
+
+
 
 ?>
 
@@ -214,44 +217,135 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
+        
+        <div class="formulario form-group">
+        <form action="ficha.php?rut=<?= $resultado ?>">
+        <div class="row">
+        <div class="col-md-2 col-lg-2">
+            <label for="rut">Selecione un Rut</label>
+            <select class="form-control" name="rut">
+            
+        <!-- llenado de rut-->
+        <?php  
+        
+        $rut = $_GET['rut'];
+          $pacientes = mysql_query("SELECT * FROM pacientes");
+        
+          while ($fila = mysql_fetch_array($pacientes)){
+            $fila['rut'];
+            $resultado = $fila['rut'];
+            
 
-        <form action="nueva_ficha.php" method="POST" id="combo" name="combo">
-            <?php $query = $mysqli -> query ("SELECT * FROM pacientes");
-                while ($valores = mysqli_fetch_array($query)) {
-            ?>        
-            <div> selecciona rut </div>
-           <!-- <select>
-                <option value="0">Seleccione:</option>
-                </*?php
-                $query = $mysqli -> query ("SELECT * FROM pacientes");
-                while ($valores = mysqli_fetch_array($query)) {
-                echo '<option value="'.$valores[id_paciente].'">'.$valores[rut].'</option>';
-                 }
-                */?>
-            </select>
-            </div> -->
-            <select>
-
-            <?php
-                
-                echo '<option value="'.$valores[id_paciente].'">'.$valores[rut].'</option>';
-                
-                
-                
-                
-                 }
             ?>
-            </select>
-
-          <div class="row">
-                <div class="fcol-md-4 col-lg-4">
-                    <label for="antecedentes_familiares">Antecedentes familiares</label>
-                    <textarea class="antecedentes_familiares" id="antecedentes_familiares" rows="3"></textarea>
-                </div>
-            </div>
-
+            
+            
+                  <option> <?php echo $resultado ?></option>
+                  
+             
+            
+          <?php  
+          }
+          
+          
+        
+        
+        ?>
+          </select>
+        </div>
+        
+        </div>
+        <br>
+        <input type="submit" value="Buscar" class="btn btn-info"/>
+        
+        
         </form>
+        </div>
 
+        <!-- fin del llenado de rut -->
+
+      
+      <h4>
+        Ficha Clinica
+        <small>Datos del paciente</small>
+      </h4>
+
+
+
+      
+        <!-- datos para rellenar-->
+
+        <div class="formulario form-group">
+	      <form action="funciones/editar_paciente_ficha_funcion.php?rut=<?= $rut ?>" method="post" id="form_home">
+        <?php 
+        
+        
+
+        $datos = mysql_query("SELECT * FROM pacientes WHERE rut='$rut'");
+        $fila = mysql_fetch_array($datos);
+        $nombre = $fila['nombre'];
+        $apellidos = $fila['apellidos'];
+        $sexo = $fila['sexo'];
+        $antecedentes_familiares = $fila['antecedentes_familiares'];
+        $antecedentes_personales = $fila['antecedentes_personales'];
+        
+        ?>
+        <div class="row">
+				<div class="col-md-2 col-lg-2">
+					<label for="rut">rut</label>
+					<input id="rut" name="rut" class="form-control" value="<?php echo $rut?>"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4 col-lg-4">
+                 <label for="nombre">Nombre</label>
+                 <input id="nombre" name="nombre" class="form-control" value=" <?php echo $nombre?>"/>
+        </div>    
+      </div>
+
+      <div class="row">
+			    <div class="col-md-4 col-lg-4">
+        	        <label for="apellidos">Apellidos</label>
+        	        <input id="apellidos" name="apellidos" class="form-control" value=" <?php echo $apellidos?>"/>
+				</div>
+			</div>
+
+      <div class="row">
+			    <div class="col-md-4 col-lg-4">
+        	        <label for="sexo">sexo</label>
+        	        <input id="sexo" name="sexo" class="form-control" value=" <?php echo $sexo?>"/>
+				</div>
+      </div>
+      
+
+      <div class="row">
+			    <div class="col-md-4 col-lg-4">
+            <label for="antecedentes_familiares">Antecedentes Familiares</label>
+            <textarea class="form-control" rows="5" id="antecedentes_familiares" name="antecedentes_familiares" > <?php echo $antecedentes_familiares?> </textarea>
+				</div>
+      </div>
+
+      <div class="row">
+			    <div class="col-md-4 col-lg-4">
+            <label for="antecedentes_personales">Antecedentes Personales</label>
+            <textarea class="form-control" rows="5" id="antecedentes_personales" name="antecedentes_personales"> <?php echo $antecedentes_personales?> </textarea>
+				</div>
+      </div>
+
+
+
+        <!-- fin datos para rellenar-->
+
+
+        <br>
+        <input type="submit" value="Guardar" class="btn btn-info"/>
+        
+        
+        
+        </form>
+        </div>
+        
+        
 
 
 
