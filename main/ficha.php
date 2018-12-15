@@ -3,6 +3,7 @@
 include('funciones/menu.php');
 include('funciones/footer.php');
 include('funciones/consultas.php');
+include('funciones/ver_farmacos.php');
 
 
 
@@ -15,7 +16,10 @@ if($_SESSION['nivel']==1 || $_SESSION['nivel']==2)
 //asignamos el menú en función de si es NIVEL 1 o NIVEL 2
 if($_SESSION['nivel']=='1'){
 	$menu = getMenuMedico();
-	$perfil = 'MEDICO';
+  $perfil = 'MEDICO';
+  
+
+
 }else{
 	$menu = getMenuAsistente();
     $perfil = 'ASISTENTE';
@@ -29,6 +33,7 @@ $footer = getFooter();
 
 $mysqli = new mysqli('localhost', 'root', '', 'consultadb');
 
+$farmacos = getFarmacos();
 
 
 ?>
@@ -217,11 +222,17 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-        
-        <div class="formulario form-group">
+        <div class="container">
+        <div class="row">
+        <div class="col-md-6 col-lg-6">
+        <!-- contenido de formulario-->
+
+
+<!-- formulario -->
+<div class="formulario form-group">
         <form action="ficha.php?rut=<?= $resultado ?>">
         <div class="row">
-        <div class="col-md-2 col-lg-2">
+        <div class="col-md-4 col-lg-4">
             <label for="rut">Selecione un Rut</label>
             <select class="form-control" name="rut">
             
@@ -287,24 +298,29 @@ desired effect
         $sexo = $fila['sexo'];
         $antecedentes_familiares = $fila['antecedentes_familiares'];
         $antecedentes_personales = $fila['antecedentes_personales'];
+//
+
+
+
+//
         
         ?>
         <div class="row">
-				<div class="col-md-2 col-lg-2">
+				<div class="col-md-4 col-lg-4">
 					<label for="rut">rut</label>
 					<input id="rut" name="rut" class="form-control" value="<?php echo $rut?>"/>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-4 col-lg-4">
+				<div class="col-md-6 col-lg-6">
                  <label for="nombre">Nombre</label>
                  <input id="nombre" name="nombre" class="form-control" value=" <?php echo $nombre?>"/>
         </div>    
       </div>
 
       <div class="row">
-			    <div class="col-md-4 col-lg-4">
+			    <div class="col-md-6 col-lg-6">
         	        <label for="apellidos">Apellidos</label>
         	        <input id="apellidos" name="apellidos" class="form-control" value=" <?php echo $apellidos?>"/>
 				</div>
@@ -319,14 +335,14 @@ desired effect
       
 
       <div class="row">
-			    <div class="col-md-4 col-lg-4">
+			    <div class="col-md-6 col-lg-6">
             <label for="antecedentes_familiares">Antecedentes Familiares</label>
             <textarea class="form-control" rows="5" id="antecedentes_familiares" name="antecedentes_familiares" > <?php echo $antecedentes_familiares?> </textarea>
 				</div>
       </div>
 
       <div class="row">
-			    <div class="col-md-4 col-lg-4">
+			    <div class="col-md-6 col-lg-6">
             <label for="antecedentes_personales">Antecedentes Personales</label>
             <textarea class="form-control" rows="5" id="antecedentes_personales" name="antecedentes_personales"> <?php echo $antecedentes_personales?> </textarea>
 				</div>
@@ -343,8 +359,52 @@ desired effect
         
         
         </form>
+        </div> 
+        <!-- fin div del formulario-->
+
+
+
+
+
+        <!-- fin contenido de formulario-->
+        </div>
+        <div class="col-md-2 col-lg-2">
+          <form action="funciones/ver_farmacos?rut=<?= $rut ?>" method="post" id="form_home"></form>
+          <input type="submit" value="Revisar" class="btn btn-info"/>
+        </div>
+        <div class="col-md-4 col-lg-4">
+       <?= $farmacos ?>
+
         </div>
         
+        
+        </div><!-- fin container -->
+        
+        
+        
+
+        
+        <!-- fin div del formulario-->
+
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4"> 
+        </div>
+        <div class="col-md-4">adadaf
+        </div>
+
+<?php 
+
+
+
+
+
+
+
+
+
+?>
+
         
 
 

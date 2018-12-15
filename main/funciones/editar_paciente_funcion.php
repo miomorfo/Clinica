@@ -1,9 +1,9 @@
 <?php
 
-//en este php vamos a centralizar todas las consultas de la intranet
+
 include('configuracion.php');
 
-if($_SESSION['nivel']==2){
+if($_SESSION['nivel']==1){
 	
 	//Vamos a recoger las variables que nos han puesto en el formulario
 	
@@ -21,8 +21,24 @@ if($_SESSION['nivel']==2){
 	
 	mysql_query("UPDATE pacientes SET rut='$rut', nombre='$nombre', apellidos='$apellidos', telefono='$telefono', prevision='$prevision', direccion='$direccion', correo='$correo' WHERE id_paciente='$id'");
 
+
+	
+
+
+
+
+
+
+
+
 	define('PAGINA_INICIO','../pacientes.php');
 	header('Location: '.PAGINA_INICIO);
+
+
+
+
+
+
 
 	
 }else {

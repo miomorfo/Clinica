@@ -17,6 +17,17 @@ if($_SESSION['nivel']==1){
 
 $footer = getFooter();
 
+
+//datos para el gráfico
+
+$connect = mysqli_connect("localhost", "root", "", "consultadb");
+$query = "SELECT sexo, count(*) as number FROM pacientes GROUP BY sexo";
+$result = mysqli_query($connect, $query);
+
+
+
+//fin datos
+
 ?>
 
 
@@ -52,33 +63,38 @@ $footer = getFooter();
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
 
-  <!-- google chart -->  
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Año', 'Hombres', 'Mujeres'],
-          ['2013',  15,      21],
-          ['2014',  18,      25],
-          ['2015',  45,       37],
-          ['2016',  32,      22]
-        ]);
+  <!-- google chart -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+           google.charts.load('current', {'packages':['corechart']});
+           google.charts.setOnLoadCallback(drawChart);
+           function drawChart()
+           {
+                var data = google.visualization.arrayToDataTable([
+                          ['sexo', 'Number'],
+                          <?php
+                          while($row = mysqli_fetch_array($result))
+                          {
+                               echo "['".$row["sexo"]."', ".$row["number"]."],";
+                          }
+                          ?>
+                     ]);
+                var options = {
+                      title: 'porcentaje de hombres y mujeres',
+                      is3D:true,
 
-        var options = {
-          title: 'Clientes de la Clinica',
-          hAxis: {title: 'Año',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
+                     };
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                chart.draw(data, options);
 
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>     
+           }
+           </script>
+
+
+
+    <!-- fin google chart-->
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -199,7 +215,7 @@ desired effect
 
 
           <!-- Status -->
-          
+
         </div>
       </div>
 
@@ -223,7 +239,7 @@ desired effect
         Estadisticas generales
         <small>a continuación de muestra una grafica de prueba para las estadisticas de la clinica</small>
       </h1>
-      
+
     </section>
 
     <!-- Main content -->
@@ -238,7 +254,7 @@ desired effect
                       <div class="col-md-3">Controles de busqueda </div>
                       <div class="col-md-6">
 
-                          <div id="chart_div" style="width: 100%; height: 500px;"></div>
+                          <div id="piechart" style="width: 900px; height: 500px;"></div>
 
                       </div>
                       <div class="col-md-3"></div>

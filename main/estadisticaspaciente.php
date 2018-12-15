@@ -17,6 +17,12 @@ if($_SESSION['nivel']==1){
 
 $footer = getFooter();
 
+
+$connect = mysqli_connect("localhost", "root", "", "consultadb");
+
+
+
+
 ?>
 
 
@@ -52,34 +58,38 @@ $footer = getFooter();
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
 
-  <!-- google chart -->  
+
+  <!-- google chart -->
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Año', 'sucesos ocurridos'],
-          ['2014',  8],
-          ['2015',  11],
-          ['2016',  8],
-          ['2017',  7]
-        ]);
+      function drawChart()
+      {
+           var data = google.visualization.arrayToDataTable([
+                     ['sexo', 'Number'],
+                     <?php
+                     while($row = mysqli_fetch_array($result))
+                     {
+                          echo "['".$row["sexo"]."', ".$row["number"]."],";
+                     }
+                     ?>
+                ]);
+           var options = {
+                 title: 'porcentaje de hombres y mujeres',
+                 is3D:true,
 
-        var options = {
-          title: 'suceos por paciente',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+                };
+           var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+           chart.draw(data, options);
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
       }
     </script>
+
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -200,7 +210,7 @@ desired effect
 
 
           <!-- Status -->
-          
+
         </div>
       </div>
 
@@ -224,36 +234,71 @@ desired effect
         Estadisticas por paciente
         <small>a continuación de muestra una grafica de prueba para las estadisticas por pacientes</small>
       </h1>
-      
+
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
+
 
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
 
         <div class="container">
-                  <div class="row">
-                      <div class="col-md-3">Controles de busqueda </div>
-                      <div class="col-md-6">
 
-                          <div id="curve_chart" style="width: 600px; height: 500px"></div>
+            <div class="row">
+                <div class="col-md-4">
+<!-- -->
+<div class="formulario form-group">
+<form action="estadisticaspaciente.php">
 
-                      </div>
-                      <div class="col-md-3"></div>
+  <div class="form-group">
+    <label for="enfermedad">Selecione una enfermedad</label>
+    <select class="form-control" name="enfermedad">
+      <option></option>
+    <!-- llenado de rut-->
+    <?php
+    //        $enfermedad = $_GET['nombre'];
+    $nombres = mysql_query("SELECT * FROM tipos_enfermedades");
+
+    while ($fila = mysql_fetch_array($nombres)){
+    $fila['nombre'];
+    $resultado = $fila['nombre'];
+    ?>
+          <option> <?php echo $resultado ?></option>
+    <?php
+    }
+    ?>
+    </select>
+  </div>
+
+<input type="submit" value="buscar" class="btn btn-primary"/>
+</form>
+
+<?php
+$prueba = $_GET['enfermedad'];
+$query = "SELECT pacientes.sexo, COUNT(*) as number FROM pacientes
+inner join diagnosticos on pacientes.id_paciente = diagnosticos.id_paciente
+inner join tipos_enfermedades on diagnosticos.id_enfermedad = tipos_enfermedades.id_enfermedad
+WHERE tipos_enfermedades.nombre = 'toc'";
+$result = mysqli_query($connect, $query);
+?>
+<!-- -->
+</div>
+
+</div>
 
 
-                  </div>
 
-                 <div class = "row">
-                    <div class="col-md-4">
-                    <button type="button" class="btn btn-secondary">Imprimir</button>
-                    </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4"></div>
-                  </div>
+
+                <div class="col-md-8">
+                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+                </div>
+
+
+            </div>
 
 
           </div>

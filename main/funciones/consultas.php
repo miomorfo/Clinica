@@ -9,7 +9,7 @@ include('configuracion.php');
 function getUsuarios(){
 	$usuarios = mysql_query("SELECT * FROM clientes");
 
-	$resultado ='<table class="table">
+	$resultado ='<table class="table table-stripped">
 					<thead>
 				  	<tr>
 				  	<th scope="col">ID</th>
@@ -37,8 +37,8 @@ function getUsuarios(){
 					<td><a href="mailto:'.$fila['email'].'">'.$fila['email'].'</a></td>
 					<td><a href="tel:'.$fila['telefono'].'">'.$fila['telefono'].'</a></td>
 					<td>'.$fila['nivel'].'</td>
-					<td><a href="editar_usuarios.php?id='.$fila['id_cliente'].'" class="enlace_rojo">Editar</a></td>
-					<td><a href="borrar_usuarios.php" class="enlace_rojo">Borrar</a></td>
+					<td><a href="editar_usuario.php?id='.$fila['id_cliente'].'" class="enlace_rojo"><span class="label label-warning">Editar</span></a></td>
+					<td><a href="funciones/eliminar_usuario.php?id='.$fila['id_cliente'].'" " onclick= "return confirmar()" ><span class="label label-danger">Eliminar</span></a></td>
 				  </tr>
 				  <tbody>';
 	}
@@ -112,6 +112,13 @@ function getPacientes(){
 	
 	return $resultado;
 }*/
+
+
+// consultas para farmacos de la ficha 
+
+
+
+
 
 
 

@@ -15,7 +15,7 @@ if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
 	$usuarios = getUsuarios();
   $pacientes = getPacientes();
   }
-	
+
 }
 ?>
 
@@ -50,6 +50,45 @@ if($_SESSION['nivel']==1 || $_SESSION['nivel']==2){
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+
+
+        <script type="text/javascript">
+        function valida(f) {
+
+          var ok = true;
+          var msg = "Ingrese valores en los campos:\n";
+          if(f.rut.value == "")
+          {
+            msg += "- rut vacio\n";
+            ok = false;
+          }
+          if(f.nombre.value == "")
+          {
+            msg += "- nombre vacio\n";
+            ok = false;
+          }
+          if(f.apellidos.value == "")
+          {
+            msg += "- apellidos vacio\n";
+            ok = false;
+          }
+          if(f.telefono.value == "")
+          {
+            msg += "- telefono vacio\n";
+            ok = false;
+          }
+
+          if(ok == false)
+            alert(msg);
+          return ok;
+        }
+        </script>
+
+
+
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -170,7 +209,7 @@ desired effect
 
 
           <!-- Status -->
-          
+
         </div>
       </div>
 
@@ -194,7 +233,7 @@ desired effect
         Sistema para clinicas TuClinic
         <small>Descripción del proyecto</small>
       </h1>
-      
+
     </section>
 
     <!-- Main content -->
@@ -208,11 +247,11 @@ desired effect
         | Your Page Content Here |
         -------------------------->
 
-        
+
 
 <h2 class="principal">Ingresar paciente</h2>
 <div class="formulario form-group">
-	<form action="funciones/crear_pacientes.php" method="post" id="form_home">
+	<form action="funciones/crear_pacientes.php" method="post" id="form_home" onsubmit="return valida(this)">
 
 			<div class="row">
 				<div class="col-md-2 col-lg-2">
@@ -225,7 +264,7 @@ desired effect
 				<div class="col-md-4 col-lg-4">
                  <label for="nombre">Nombre</label>
                  <input id="nombre" name="nombre" class="form-control"/>
-        </div>    
+        </div>
       </div>
 
       <div class="row">
@@ -241,13 +280,13 @@ desired effect
                     <select class="form-control" name="sexo">
                         <option value="masculino">masculino</option>
                         <option value="femenino">femenino</option>
-                        
+
                     </select>
-        	        
+
 				  </div>
       </div>
-        
-    
+
+
 
       <div class="row">
 			  <div class="col-md-2 col-lg-2">
@@ -255,16 +294,16 @@ desired effect
 	        <input id="telefono" name="telefono" class="form-control"/>
 				</div>
       </div>
-      
+
       <div class="row">
 			    <div class="col-md-2 col-lg-2">
                 <label for="prevision">prevision</label>
                     <select class="form-control" name="prevision">
                         <option value="fonasa">Fonasa</option>
                         <option value="isapre">Isapre</option>
-                        
+
                     </select>
-        	        
+
 				  </div>
       </div>
 
@@ -283,6 +322,11 @@ desired effect
 	        <input id="correo" name="correo" class="form-control"/>
 				</div>
 			</div>
+      <div class="row">
+      <div class="col-md-2 col-lg-2">
+        <label for="alta">fecha naciemiento</label>
+        <input type="date" name="fecha_nacimiento" value="" />
+
 
 				<br>
         <input type="submit" value="Agregar" class="b_inicio btn btn-info"/>
